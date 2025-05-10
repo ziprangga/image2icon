@@ -1,4 +1,4 @@
-# [![image2icon](resource/i2i.png)](resource/i2i.png) image2icon
+# [![image2icon](resource/image2icon.png)](resource/image2icon.png) image2icon
 
 **image2icon** is my personal tool for create icns and ico. I created this application to help speed up the process of converting png to icns or ico. This application was originally for learning rust integration to python with safer_ffi. If you want to use it please download or compile from source.
 
