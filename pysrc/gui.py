@@ -1,13 +1,12 @@
+import os
 import customtkinter as ctk
 from customtkinter import CTkImage, filedialog
 from tkinter import messagebox
 from pysrc.image2icon import Image2IconLib
 from PIL import Image
-import os
 
 
 class ConverterGui:
-
     def __init__(self, image2icon_lib: Image2IconLib) -> None:
         self.image2icon_lib = image2icon_lib
         self.root = ctk.CTk()
@@ -67,7 +66,7 @@ class ConverterGui:
         self.entry_label = ctk.CTkLabel(
             self.preview_frame, text="Select a folder or image"
         )
-        self.entry_label.grid(row=0, column=1, pady=(10, 0), padx=10, sticky="ew")
+        self.entry_label.place(relx=0.5, rely=0.5, anchor="center")
 
         self.clear_button = ctk.CTkButton(
             self.preview_frame,
@@ -96,14 +95,14 @@ class ConverterGui:
             return
 
         self.input_image_path = selected_path
-        self.entry_label.grid_forget()
+        self.entry_label.place_forget()
         self.display_image_preview(selected_path)
 
     def clear_selection(self):
         self.input_image_path = None
         self.iconset_folder = None
         self.entry_label.configure(text="Select a folder or image")
-        self.entry_label.grid(row=0, column=1, pady=(10, 0), padx=10, sticky="ew")
+        self.entry_label.place(relx=0.5, rely=0.5, anchor="center")
         self.preview_label.configure(image=None, text="")
         self.preview_label.image = None
 
