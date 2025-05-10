@@ -1,0 +1,15 @@
+[package]
+name = "image2icon"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+icns = "0.3.1"
+ico = "0.4.0"
+image = "0.25.6"
+safer-ffi = "=0.1.13"
+tempfile = "3.19.1"
+
+[lib]
+crate-type = ["cdylib"]
+
