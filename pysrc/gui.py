@@ -20,17 +20,12 @@ class ConverterGui:
         self.iconset_folder = None
         self.input_image_path = None
 
-        self.root.grid_rowconfigure(0, weight=1)
-        self.root.grid_columnconfigure(0, weight=1)
+        self.bg_frame = ctk.CTkFrame(self.root)
+        self.bg_frame.pack(expand=True, fill="both", padx=10, pady=10)
 
-        self.entry_label = ctk.CTkLabel(self.root, text="Select a folder or image")
-        self.entry_label.grid(row=0, column=0, pady=(10, 0), padx=10, sticky="ew")
-
-        self.content_frame = ctk.CTkFrame(self.root)
-        self.content_frame.grid(row=1, column=0, pady=(0, 10), padx=10, sticky="nsew")
-        self.content_frame.grid_columnconfigure(0, weight=1)
-        self.content_frame.grid_columnconfigure(1, weight=1)
-        self.content_frame.grid_rowconfigure(0, weight=1)
+        self.content_frame = ctk.CTkFrame(self.bg_frame, fg_color="transparent")
+        self.content_frame.place(relx=0.5, rely=0.5, anchor="center")
+        self.content_frame.grid_columnconfigure(0, weight=1, minsize=250)
 
         self.button_frame = ctk.CTkFrame(self.content_frame, fg_color="transparent")
         self.button_frame.grid(row=0, column=0, sticky="nsew", padx=10, pady=10)
@@ -69,6 +64,11 @@ class ConverterGui:
         self.preview_label = ctk.CTkLabel(self.preview_frame, text="")
         self.preview_label.grid(row=1, column=1, pady=10)
 
+        self.entry_label = ctk.CTkLabel(
+            self.preview_frame, text="Select a folder or image"
+        )
+        self.entry_label.grid(row=0, column=1, pady=(10, 0), padx=10, sticky="ew")
+
         self.clear_button = ctk.CTkButton(
             self.preview_frame,
             text="Clear Selection",
@@ -96,13 +96,14 @@ class ConverterGui:
             return
 
         self.input_image_path = selected_path
-        self.entry_label.configure(text=f"🖼️ {selected_path}")
+        self.entry_label.grid_forget()
         self.display_image_preview(selected_path)
 
     def clear_selection(self):
         self.input_image_path = None
         self.iconset_folder = None
         self.entry_label.configure(text="Select a folder or image")
+        self.entry_label.grid(row=0, column=1, pady=(10, 0), padx=10, sticky="ew")
         self.preview_label.configure(image=None, text="")
         self.preview_label.image = None
 
